@@ -1,0 +1,405 @@
+/* ============================================
+   CeloRemit — Anime Pixel Retro Design System
+   Colors: Yellow, Deep Green, Black
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---- CSS Custom Properties ---- */
+:root {
+  /* Primary Palette */
+  --yellow-bright: #FFD700;
+  --yellow-warm: #F5C518;
+  --yellow-deep: #E6B800;
+  --yellow-glow: rgba(255, 215, 0, 0.3);
+  --yellow-subtle: rgba(255, 215, 0, 0.08);
+
+  /* Green Palette */
+  --green-deep: #0B5D1E;
+  --green-forest: #1A7A3A;
+  --green-emerald: #2ECC71;
+  --green-neon: #39FF14;
+  --green-glow: rgba(26, 122, 58, 0.3);
+  --green-subtle: rgba(26, 122, 58, 0.1);
+
+  /* Dark Palette */
+  --black-pure: #000000;
+  --black-rich: #0A0A0A;
+  --black-soft: #111111;
+  --black-card: #151515;
+  --black-elevated: #1A1A1A;
+  --black-border: #222222;
+  --black-hover: #2A2A2A;
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --text-muted: #666666;
+  --text-accent: var(--yellow-bright);
+
+  /* Fonts */
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-pixel-alt: 'Silkscreen', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --pixel-border: 3px solid var(--yellow-bright);
+
+  /* Shadows */
+  --shadow-yellow: 0 0 20px rgba(255, 215, 0, 0.15), 0 0 60px rgba(255, 215, 0, 0.05);
+  --shadow-green: 0 0 20px rgba(26, 122, 58, 0.2), 0 0 60px rgba(26, 122, 58, 0.05);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black-rich);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Pixel Scanline Overlay ---- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black-rich);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--green-deep);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-forest);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: var(--yellow-bright);
+  color: var(--black-pure);
+}
+
+/* ---- Pixel Grid Background ---- */
+.pixel-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ---- Animations ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px var(--yellow-glow), 0 0 20px var(--yellow-glow); }
+  50% { box-shadow: 0 0 15px var(--yellow-bright), 0 0 40px var(--yellow-glow); }
+}
+
+@keyframes pixel-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes coin-spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes border-dance {
+  0% { border-color: var(--yellow-bright); }
+  33% { border-color: var(--green-emerald); }
+  66% { border-color: var(--green-neon); }
+  100% { border-color: var(--yellow-bright); }
+}
+
+/* ---- Utility Classes ---- */
+.pixel-font {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+}
+
+.pixel-font-alt {
+  font-family: var(--font-pixel-alt);
+}
+
+.text-yellow { color: var(--yellow-bright); }
+.text-green { color: var(--green-emerald); }
+.text-muted { color: var(--text-secondary); }
+
+.glow-yellow {
+  text-shadow: 0 0 10px var(--yellow-glow), 0 0 30px var(--yellow-glow);
+}
+
+.glow-green {
+  text-shadow: 0 0 10px var(--green-glow), 0 0 30px var(--green-glow);
+}
+
+/* ---- Pixel Button ---- */
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  border: 3px solid var(--yellow-bright);
+  background: transparent;
+  color: var(--yellow-bright);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  image-rendering: pixelated;
+}
+
+.pixel-btn::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--yellow-bright);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: -1;
+}
+
+.pixel-btn:hover {
+  color: var(--black-pure);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--yellow-deep);
+}
+
+.pixel-btn:hover::before {
+  opacity: 1;
+}
+
+.pixel-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 0px 0px 0px var(--yellow-deep);
+}
+
+.pixel-btn--green {
+  border-color: var(--green-emerald);
+  color: var(--green-emerald);
+}
+
+.pixel-btn--green::before {
+  background: var(--green-emerald);
+}
+
+.pixel-btn--green:hover {
+  box-shadow: 4px 4px 0px var(--green-deep);
+}
+
+.pixel-btn--filled {
+  background: var(--yellow-bright);
+  color: var(--black-pure);
+}
+
+.pixel-btn--filled:hover {
+  background: var(--yellow-warm);
+  box-shadow: 4px 4px 0px var(--green-deep);
+}
+
+.pixel-btn--large {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: 0.85rem;
+}
+
+/* ---- Pixel Card ---- */
+.pixel-card {
+  background: var(--black-card);
+  border: 2px solid var(--black-border);
+  padding: var(--space-xl);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.pixel-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--yellow-bright), var(--green-emerald));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+}
+
+.pixel-card:hover {
+  border-color: var(--yellow-bright);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-yellow);
+}
+
+.pixel-card:hover::before {
+  opacity: 0.1;
+}
+
+/* ---- Glass Card ---- */
+.glass-card {
+  background: rgba(21, 21, 21, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+/* ---- Container ---- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ---- Section ---- */
+.section {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+/* ---- Divider ---- */
+.pixel-divider {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--yellow-bright) 0px,
+    var(--yellow-bright) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.4;
+}
+
+/* ---- Badge ---- */
+.pixel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  border: 2px solid var(--green-emerald);
+  color: var(--green-emerald);
+  background: var(--green-subtle);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 var(--space-md);
+  }
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
+}
