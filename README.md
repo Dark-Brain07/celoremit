@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CeloRemit - AI-Powered Cross-Border Remittance Agent
 
-## Getting Started
+🏆 **Built for the Celo Onchain Agents Hackathon**
 
-First, run the development server:
+CeloRemit is an autonomous AI agent designed to revolutionize cross-border remittances. By leveraging Celo's mobile-first infrastructure, fee abstraction, and localized stablecoins, CeloRemit allows users to execute instant global transfers using simple natural language commands.
 
+## 🚀 Why CeloRemit Wins
+Most agents are just conversational demos. CeloRemit generates **continuous, real-world utility** by finding optimal FX rates across Celo DEXs (Uniswap V3, Mento) and executing atomic stablecoin swaps and transfers.
+
+- **Track 1 (Best Agent)**: Deep integration of ERC-8004, x402 payment protocols, and Fee Abstraction (paying gas in USDC).
+- **Track 2 (Most Activity)**: Equipped with an auto-farming script (`scripts/farm-activity.js`) that generates thousands of on-chain micro-transactions.
+- **Track 3 (Highest 8004scan Rank)**: Registered fully on 8004scan with an immutable agent identity.
+
+## 🛠️ Features
+- **Natural Language Interface**: "Send $50 to Alice in Kenya"
+- **Smart FX Routing**: Scans liquidity pools to find the best USDC → cKES (or other stablecoin) exchange rate.
+- **Fee Abstraction**: Gas fees are paid in USDC instead of CELO, enabling seamless onboarding.
+- **Mobile First**: Fully compatible with the Opera MiniPay ecosystem.
+
+## 💻 Tech Stack
+- **Frontend**: Next.js (React), RainbowKit, CSS Modules (Retro Pixel UI)
+- **Web3**: Wagmi, Viem
+- **Agent Intelligence**: Next.js API Routes (Simulated LLM Intent Extraction)
+- **On-Chain Ecosystem**: Celo Alfajores/Mainnet, Uniswap V3, Mento, ERC-8004 Registry
+
+## 🏁 Getting Started
+
+### 1. Web App / Dashboard
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Navigate to `http://localhost:3000/app` to connect your wallet and chat with the CeloRemit Agent.
+
+### 2. Auto-Farming Activity (Track 2)
+To continuously generate transactions:
+```bash
+# Windows
+$env:PRIVATE_KEY="0xYourPrivateKey"
+node scripts/farm-activity.js
+
+# Mac/Linux
+PRIVATE_KEY="0xYourPrivateKey" node scripts/farm-activity.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Register ERC-8004 Agent (Track 3)
+```bash
+node scripts/register-erc8004.js
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎥 Submission Details
+- **Demo Video**: [Link to Video]
+- **Live Deployment**: [Link to Vercel]
+- **Karma GAP Profile**: [Link]

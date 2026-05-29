@@ -1,4 +1,6 @@
 import "./globals.css";
+import '@rainbow-me/rainbowkit/styles.css';
+import { Providers } from './providers';
 
 export const metadata = {
   title: "CeloRemit — AI-Powered Cross-Border Remittance Agent",
@@ -29,7 +31,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0A0A0A" />
       </head>
-      <body className="pixel-grid-bg">{children}</body>
+      <body className="pixel-grid-bg">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function Home() {
   return (
@@ -20,10 +21,12 @@ export default function Home() {
             <li><a href="#how-it-works" className={styles.navLink}>How It Works</a></li>
             <li><a href="#features" className={styles.navLink}>Features</a></li>
             <li><a href="#corridors" className={styles.navLink}>Corridors</a></li>
-            <li><a href="#demo" className={styles.navLink}>Demo</a></li>
+            <li><a href="/app" className={styles.navLink}>App Dashboard</a></li>
           </ul>
 
-          <a href="#cta" className={styles.navCta}>Launch App →</a>
+          <div className={styles.navCta}>
+            <ConnectButton />
+          </div>
 
           <button className={styles.mobileMenuBtn} aria-label="Menu">☰</button>
         </div>
